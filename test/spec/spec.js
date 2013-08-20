@@ -5,6 +5,8 @@ var child_process = require('child_process');
 var webdriver = require('selenium-webdriver');
 
 describe('angular-dragon-drop', function() {
+  var ptor = protractor.getInstance();
+
   var server = null;
   beforeEach(function() {
     if (!server) {
@@ -14,8 +16,6 @@ describe('angular-dragon-drop', function() {
 
     ptor.get('http://localhost:8001/test/page.html');
   });
-
-  var ptor = protractor.getInstance();
 
   var assertListElementsEqual = function (id, values) {
     ptor.findElement(protractor.By.id(id + 'List'))

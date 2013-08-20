@@ -10,10 +10,11 @@ exports.config = {
 
   capabilities: {
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-    'build': process.env.TRAVIS_BUILD_NUMBER,
-    'name': 'angular-dragon-drop',
-    'tags': ["Node " + process.env.TRAVIS_NODE_VERSION],
-    'browserName': 'chrome'
+    build: process.env.TRAVIS_BUILD_NUMBER,
+    name: 'angular-dragon-drop',
+    tags: ["Node " + process.env.TRAVIS_NODE_VERSION],
+    browserName: 'chrome',
+    platform: 'LINUX'
   },
 
   jasmineNodeOpts: {
