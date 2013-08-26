@@ -13,8 +13,8 @@ exports.config = {
     build: process.env.TRAVIS_BUILD_NUMBER,
     name: 'angular-dragon-drop',
     tags: ["Node " + process.env.TRAVIS_NODE_VERSION],
-    browserName: 'chrome',
-    platform: 'LINUX'
+    browserName: process.env.SAUCE_BROWSER_NAME,
+    platform: process.env.SAUCE_PLATFORM
   },
 
   jasmineNodeOpts: {
