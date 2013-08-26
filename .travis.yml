@@ -1,7 +1,6 @@
 language: node_js
 
 node_js:
-  - '0.8'
   - '0.10'
 
 env:
@@ -22,6 +21,12 @@ env:
   - SAUCE_PLATFORM='Windows 8'  SAUCE_BROWSER='firefox'
   - SAUCE_PLATFORM='Windows 8'  SAUCE_BROWSER='chrome'
   - SAUCE_PLATFORM='Windows 8'  SAUCE_BROWSER='internet explorer'
+
+# Also make sure that nothing goes wrong on the server side when using node 0.8
+matrix:
+  include:
+    - node_js: '0.8'
+    - env: SAUCE_PLATFORM='Linux' SAUCE_BROWSER='chrome'
 
 script: npm run-script sauce-test
 

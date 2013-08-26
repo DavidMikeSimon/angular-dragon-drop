@@ -13,7 +13,7 @@ exports.config = {
     build: process.env.TRAVIS_BUILD_NUMBER,
     name: 'angular-dragon-drop',
     tags: ["Node " + process.env.TRAVIS_NODE_VERSION],
-    browserName: process.env.SAUCE_BROWSER_NAME,
+    browserName: process.env.SAUCE_BROWSER,
     platform: process.env.SAUCE_PLATFORM
   },
 
