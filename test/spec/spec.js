@@ -10,9 +10,9 @@ describe('angular-dragon-drop', function() {
   beforeEach(function() {
     ptor.get('http://localhost:8001/test/page.html');
     ptor.executeScript(
-      "setTestTitle('" +
+      "document.title = 'Test: " +
       jasmine.getEnv().currentSpec.description +
-      "');"
+      "';"
     );
   });
 
