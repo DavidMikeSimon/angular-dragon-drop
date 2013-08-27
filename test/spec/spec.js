@@ -38,9 +38,9 @@ describe('angular-dragon-drop', function() {
       ptor.findElement(protractor.By.id(dstId))
       .then(function(dstElem) {
         new webdriver.ActionSequence(ptor.driver)
-        .mouseMove(srcElem, {x: 5, y: 5})
+        .mouseMove(srcElem)
         .mouseDown()
-        .mouseMove(dstElem, {x: 5, y: 5})
+        .mouseMove(dstElem)
         .mouseUp()
         .perform();
       });
