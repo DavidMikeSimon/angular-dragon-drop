@@ -1,7 +1,4 @@
-var util = require('util');
-var fs = require('fs');
-var path = require('path');
-var child_process = require('child_process');
+var cheerio = require('cheerio');
 
 describe('angular-dragon-drop', function() {
   var ptor = protractor.getInstance();
@@ -16,18 +13,15 @@ describe('angular-dragon-drop', function() {
   });
 
   var assertListElementsEqual = function (id, values) {
-    ptor.findElement(protractor.By.id(id + 'List'))
-    .findElements(protractor.By.tagName('li'))
-    .then(function(elements) {
-      expect(elements.length).toEqual(values.length);
-      for (var i = 0; i < elements.length; ++i) {
-        expect(elements[i].getText()).toEqual(values[i]);
-      };
-    });
+    ptor.findElement(protractor.By.id(id + 'Div'))
+    .getInnerHtml()
+    .then(function(html) {
+      var $ = cheerio.load(html);
 
-    ptor.findElement(protractor.By.id(id + 'Values'))
-    .then(function(element) {
-      expect(element.getText()).toEqual(values.join(','));
+      expect($('#' + id + 'Values').text()).toEqual(values.join(','));
+
+      var liValues = $('li').map(function() { return $(this).text(); });
+      expect(liValues).toEqual(values);
     });
   };
 

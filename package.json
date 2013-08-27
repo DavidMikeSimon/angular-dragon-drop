@@ -1,7 +1,8 @@
 {
     "devDependencies": {
         "protractor": "git://github.com/DavidMikeSimon/protractor#master",
-        "express": "*"
+        "express": "*",
+        "cheerio": "*"
     },
     "scripts": {
         "test": "node ./node_modules/protractor/bin/protractor test/protractor.js",

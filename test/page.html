@@ -6,23 +6,23 @@
 <body ng-app="ExampleApp">
   <div id='main' ng-controller="MainCtrl">
 
-    <div>
+    <div id="thingsDiv">
       <ul id="thingsList" btf-dragon="thing in things"
       style="background-color: green; min-height: 100px">
         <li id="item{{thing}}">{{thing}}</li>
       </ul>
+      <span id="thingsValues">{{things.join(',')}}</span>
     </div>
-    <span id="thingsValues">{{things.join(',')}}</span>
 
     <hr/>
 
-    <div>
+    <div id="otherThingsDiv">
       <ul id="otherThingsList" btf-dragon="thing in otherThings"
       style="background-color: blue; min-height: 100px">
         <li id="item{{thing}}">{{thing}}</li>
       </ul>
+      <span id="otherThingsValues">{{otherThings.join(',')}}</span>
     </div>
-    <span id="otherThingsValues">{{otherThings.join(',')}}</span>
 
     <hr/>
 
@@ -32,25 +32,25 @@
 
     <hr/>
 
-    <div>
+    <div id="copyableThingsDiv">
       <ul id="copyableThingsList" btf-dragon="thing in copyableThings"
       btf-double-dragon
       style="background-color: yellow; min-height: 100px">
         <li id="item{{thing}}">{{thing}}</li>
       </ul>
+      <span id="copyableThingsValues">{{copyableThings.join(',')}}</span>
     </div>
-    <span id="copyableThingsValues">{{copyableThings.join(',')}}</span>
 
     <hr/>
 
-    <div>
+    <div id="noBeeThingsDiv">
       <ul id="noBeeThingsList" btf-dragon="thing in noBeeThings"
       btf-dragon-accepts="doesntStartWithB"
       style="background-color: pink; min-height: 100px">
         <li id="item{{thing}}">{{thing}}</li>
       </ul>
+      <span id="noBeeThingsValues">{{noBeeThings.join(',')}}</span>
     </div>
-    <span id="noBeeThingsValues">{{noBeeThings.join(',')}}</span>
 
   </div>
 
