@@ -2,7 +2,6 @@ var util = require('util');
 var fs = require('fs');
 var path = require('path');
 var child_process = require('child_process');
-var webdriver = require('selenium-webdriver');
 
 describe('angular-dragon-drop', function() {
   var ptor = protractor.getInstance();
@@ -37,7 +36,7 @@ describe('angular-dragon-drop', function() {
     .then(function(srcElem) {
       ptor.findElement(protractor.By.id(dstId))
       .then(function(dstElem) {
-        new webdriver.ActionSequence(ptor.driver)
+        new protractor.ActionSequence(ptor.driver)
         .mouseMove(srcElem)
         .mouseDown()
         .mouseMove(dstElem)
