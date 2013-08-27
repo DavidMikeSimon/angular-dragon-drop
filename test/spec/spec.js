@@ -15,6 +15,11 @@ describe('angular-dragon-drop', function() {
     }
 
     ptor.get('http://localhost:8001/test/page.html');
+    ptor.executeScript(
+      "setTestTitle('" +
+      jasmine.getEnv().currentSpec.description +
+      "');"
+    );
   });
 
   var assertListElementsEqual = function (id, values) {

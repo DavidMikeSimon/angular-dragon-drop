@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title id="test-title">Testing</title>
+</head>
 <body ng-app="ExampleApp">
   <div id='main' ng-controller="MainCtrl">
 
@@ -56,16 +59,20 @@
 
   <script>
     angular.module('ExampleApp', ['btford.dragon-drop']).
-      controller('MainCtrl', function ($scope) {
-        $scope.things = ['Foo', 'Bar', 'Baz'];
-        $scope.otherThings = [];
-        $scope.copyableThings = ['Paper', 'Right'];
-        $scope.noBeeThings = ['Nose'];
+    controller('MainCtrl', function ($scope) {
+      $scope.things = ['Foo', 'Bar', 'Baz'];
+      $scope.otherThings = [];
+      $scope.copyableThings = ['Paper', 'Right'];
+      $scope.noBeeThings = ['Nose'];
 
-        $scope.doesntStartWithB = function(s) {
-          return s[0] !== 'B';
-        };
-      });
+      $scope.doesntStartWithB = function(s) {
+        return s[0] !== 'B';
+      };
+    });
+
+    function setTestTitle(s) {
+      angular.element(document.getElementById('test-title')).text("Test: " + s);
+    }
   </script>
 </body>
 </html>
