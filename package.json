@@ -1,7 +1,7 @@
 {
     "devDependencies": {
         "selenium-webdriver": "~2.34.0",
-        "protractor": "git://github.com/DavidMikeSimon/protractor#38b0544434",
+        "protractor": "git://github.com/DavidMikeSimon/protractor#master",
         "express": "*"
     },
     "scripts": {
