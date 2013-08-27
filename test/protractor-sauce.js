@@ -12,10 +12,10 @@ exports.config = {
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
     build: process.env.TRAVIS_BUILD_NUMBER,
     name: 'angular-dragon-drop',
-    tags: [
-      "Node " + process.env.TRAVIS_NODE_VERSION,
-      "Job " + process.env.TRAVIS_JOB_NUMBER
-    ],
+    tags: [].concat(
+      process.env.TRAVIS_NODE_VERSION ? ["Node " + process.env.TRAVIS_NODE_VERSION ] : [],
+      process.env.TRAVIS_JOB_NUMBER ? ["Job " + process.env.TRAVIS_JOB_NUMBER ] : []
+    ),
     browserName: process.env.SAUCE_BROWSER,
     platform: process.env.SAUCE_PLATFORM,
     version: process.env.SAUCE_BROWSER_VERSION
