@@ -8,7 +8,8 @@ env:
   - SAUCE_PLATFORM='Linux'      SAUCE_BROWSER='firefox'
   - SAUCE_PLATFORM='OS X 10.6'  SAUCE_BROWSER='safari'
   - SAUCE_PLATFORM='OS X 10.6'  SAUCE_BROWSER='chrome'
-  - SAUCE_PLATFORM='OS X 10.6'  SAUCE_BROWSER='firefox'
+# drag-and-drop testing seems to be broken on Mac-FF on Sauce, for now :-(
+#  - SAUCE_PLATFORM='OS X 10.6'  SAUCE_BROWSER='firefox'
   - SAUCE_PLATFORM='Windows XP' SAUCE_BROWSER='internet explorer'
   - SAUCE_PLATFORM='Windows 7'  SAUCE_BROWSER='chrome'
   - SAUCE_PLATFORM='Windows 7'  SAUCE_BROWSER='firefox'
@@ -21,7 +22,9 @@ matrix:
     - node_js: '0.8'
     - env: SAUCE_PLATFORM='Linux' SAUCE_BROWSER='chrome'
 
-before_script: node test/webserver.js
+before_script:
+  - npm install forever
+  - forever start test/webserver.js
 
 script: npm run-script sauce-test
 
