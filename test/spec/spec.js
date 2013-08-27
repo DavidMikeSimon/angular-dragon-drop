@@ -7,13 +7,7 @@ var webdriver = require('selenium-webdriver');
 describe('angular-dragon-drop', function() {
   var ptor = protractor.getInstance();
 
-  var server = null;
   beforeEach(function() {
-    if (!server) {
-      server = child_process.spawn('./test/webserver.js');
-      server.unref(); // Server will stop when the protractor process ends
-    }
-
     ptor.get('http://localhost:8001/test/page.html');
     ptor.executeScript(
       "setTestTitle('" +
@@ -42,9 +36,12 @@ describe('angular-dragon-drop', function() {
     ptor.findElement(protractor.By.id(srcId))
     .then(function(srcElem) {
       ptor.findElement(protractor.By.id(dstId))
-      .then(function(dest) {
+      .then(function(dstElem) {
         new webdriver.ActionSequence(ptor.driver)
-        .dragAndDrop(srcElem, dest)
+        .mouseMove(srcElem, {x: 5, y: 5})
+        .mouseDown()
+        .mouseMove(dstElem, {x: 5, y: 5})
+        .mouseUp()
         .perform();
       });
     });

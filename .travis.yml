@@ -21,6 +21,8 @@ matrix:
     - node_js: '0.8'
     - env: SAUCE_PLATFORM='Linux' SAUCE_BROWSER='chrome'
 
+before_script: node test/webserver.js
+
 script: npm run-script sauce-test
 
 addons:

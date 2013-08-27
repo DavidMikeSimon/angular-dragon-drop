@@ -17,7 +17,8 @@ exports.config = {
       "Job " + process.env.TRAVIS_JOB_NUMBER
     ],
     browserName: process.env.SAUCE_BROWSER,
-    platform: process.env.SAUCE_PLATFORM
+    platform: process.env.SAUCE_PLATFORM,
+    version: process.env.SAUCE_BROWSER_VERSION
   },
 
   jasmineNodeOpts: {
