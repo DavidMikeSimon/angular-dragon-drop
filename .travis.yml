@@ -4,23 +4,25 @@ node_js:
   - '0.10'
 
 env:
-  - SAUCE_PLATFORM='Linux'      SAUCE_BROWSER='chrome'
-  - SAUCE_PLATFORM='Linux'      SAUCE_BROWSER='firefox'
-  - SAUCE_PLATFORM='OS X 10.6'  SAUCE_BROWSER='safari'
-  - SAUCE_PLATFORM='OS X 10.6'  SAUCE_BROWSER='chrome'
-# drag-and-drop testing seems to be broken on Mac-FF on Sauce, for now :-(
-#  - SAUCE_PLATFORM='OS X 10.6'  SAUCE_BROWSER='firefox'
-  - SAUCE_PLATFORM='Windows XP' SAUCE_BROWSER='internet explorer'
-  - SAUCE_PLATFORM='Windows 7'  SAUCE_BROWSER='chrome'
-  - SAUCE_PLATFORM='Windows 7'  SAUCE_BROWSER='firefox'
-  - SAUCE_PLATFORM='Windows 7'  SAUCE_BROWSER='internet explorer'
-  - SAUCE_PLATFORM='Windows 8'  SAUCE_BROWSER='internet explorer'
+  matrix:
+    - SAUCE_PLATFORM='Linux'      SAUCE_BROWSER='chrome'
+    - SAUCE_PLATFORM='Linux'      SAUCE_BROWSER='firefox'
+    # mouseMoveTo is unimplemented in the Safari Selenium driver
+    # - SAUCE_PLATFORM='OS X 10.6'  SAUCE_BROWSER='safari' SAUCE_BROWSER_VERSION=5
+    - SAUCE_PLATFORM='OS X 10.6'  SAUCE_BROWSER='chrome'
+    # drag-and-drop testing seems to be broken on Sauce Mac-FF, not sure why
+    # - SAUCE_PLATFORM='OS X 10.6'  SAUCE_BROWSER='firefox'
+    - SAUCE_PLATFORM='Windows XP' SAUCE_BROWSER='internet explorer' SAUCE_BROWSER_VERSION=8
+    - SAUCE_PLATFORM='Windows 7'  SAUCE_BROWSER='chrome'
+    - SAUCE_PLATFORM='Windows 7'  SAUCE_BROWSER='firefox'
+    - SAUCE_PLATFORM='Windows 7'  SAUCE_BROWSER='internet explorer' SAUCE_BROWSER_VERSION=9
+    - SAUCE_PLATFORM='Windows 8'  SAUCE_BROWSER='internet explorer' SAUCE_BROWSER_VERSION=10
 
 # Also make sure that nothing goes wrong on the server side when using node 0.8
 matrix:
   include:
     - node_js: '0.8'
-    - env: SAUCE_PLATFORM='Linux' SAUCE_BROWSER='chrome'
+      env: SAUCE_PLATFORM='Linux' SAUCE_BROWSER='chrome'
 
 before_script:
   - npm install forever
