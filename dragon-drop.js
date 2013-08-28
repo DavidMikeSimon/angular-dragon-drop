@@ -269,8 +269,12 @@ angular.module('btford.dragon-drop', []).
             }
             dragDuplicate = duplicate;
 
-            offsetX = (ev.pageX - offset.left);
-            offsetY = (ev.pageY - offset.top);
+            // IE 8 does not support pageX, se we'll use clientX if necessary
+            var pageX = ev.pageX || ev.clientX
+            var pageY = ev.pageY || ev.clientY
+
+            offsetX = (pageX - offset.left);
+            offsetY = (pageY - offset.top);
 
             spawnFloaty();
             drag(ev);
