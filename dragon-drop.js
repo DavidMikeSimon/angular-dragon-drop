@@ -133,11 +133,16 @@ angular.module('btford.dragon-drop', []).
 
       var dropArea = getElementBehindPoint(floaty, ev.clientX, ev.clientY);
 
-      var accepts = function () {
-        return dropArea.attr('btf-dragon') &&
-        ( !dropArea.attr('btf-dragon-accepts') ||
-          dropArea.scope().$eval(dropArea.attr('btf-dragon-accepts'))(dragValue) );
-      };
+      var accepts = function () { return dropArea.attr('btf-dragon') };
+      if (dropArea.attr('btf-dragon-accepts')) {
+        var origAccepts = accepts;
+        accepts = function () {
+          if (!origAccepts()) { return false; }
+          var subScope = dropArea.scope().$new();
+          subScope.$dropped = dragValue;
+          return subScope.$eval(dropArea.attr('btf-dragon-accepts'));
+        }
+      }
 
       while (dropArea.length > 0 && !accepts()) {
         dropArea = dropArea.parent();
@@ -207,13 +212,6 @@ angular.module('btford.dragon-drop', []).
         var duplicate = container.attr('btf-double-dragon') !== undefined;
 
         return function (scope, elt, attr) {
-
-          var accepts = scope.$eval(attr.btfDragonAccepts);
-
-          if (accepts !== undefined && typeof accepts !== 'function') {
-            throw Error('Expected btfDragonAccepts to be a function.');
-          }
-
           var spawnFloaty = function () {
             scope.$apply(function () {
               floaty = template.clone();

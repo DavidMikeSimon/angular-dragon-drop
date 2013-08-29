@@ -58,13 +58,13 @@ Example:
 ```
 
 ### btf-dragon-accepts
-Makes the dragon only accepts items that pass the truth test function given by this argument.
-Add the `btf-dragon-accepts` attribute to an element to get the behavior.
+Makes the dragon only accepts items when this expression returns true. A
+property named '$dropped' with the item is exposed for this expression.
 
 Example:
 ```html
 <h2>You can only put shiny objects here</h2>h2>
-<div btf-dragon="item in list" btf-dragon-accepts="shinyThings">
+<div btf-dragon="item in list" btf-dragon-accepts="$dropped.shininess > 5">
   {{item.name}}
 </div>
 <h2>This takes anything</h2>
